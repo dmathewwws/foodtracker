@@ -15,7 +15,7 @@ class Meal: PFObject, PFSubclassing {
     
     @NSManaged var name: String
     @NSManaged var photo: PFFile!
-    @NSManaged var rating: Rating
+    @NSManaged var ratings: PFRelation
     
     static func parseClassName() -> String {
         return "Meal"

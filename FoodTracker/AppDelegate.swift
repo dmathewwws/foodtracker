@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
         
-        Parse.enableLocalDatastore()
+//        Parse.enableLocalDatastore()
         
         // Initialize Parse.
         Parse.setApplicationId("GBSzViHwQHD7xudwafKVRLWxc2f6bvmgFNzlTDkA",

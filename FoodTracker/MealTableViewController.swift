@@ -151,16 +151,29 @@ class MealTableViewController: UITableViewController, MealTableViewControllerDel
     
     func loadMeals() {//-> [Meal]? {
         let query = Meal.query()
-        query?.includeKey("ratings.rating")
         query?.findObjectsInBackgroundWithBlock {
             (objects:[PFObject]?, error:NSError?) -> Void in
             
             if error == nil {
                 
                 if let objects = objects as? [Meal]{
-                    print("objects is \(objects)")
+                    //print("objects is \(objects)")
                     
                     self.meals = objects
+                    
+                    for meal in self.meals {
+                        let ratingsRelation = meal.relationForKey("ratings")
+                        let query = ratingsRelation.query()
+                        query?.cachePolicy = .NetworkOnly
+                        query?.findObjectsInBackgroundWithBlock({ (objects, ErrorType) -> Void in
+                            //
+                            //print("meal ratings is \(objects)")
+                            //print("self.meals is \(self.meals)")
+
+                        })
+                    }
+                    
+
                     self.tableView!.reloadData()
                 }
             }

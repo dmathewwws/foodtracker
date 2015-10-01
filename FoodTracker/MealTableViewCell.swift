@@ -29,6 +29,16 @@ class MealTableViewCell: UITableViewCell {
                         }
                     }
                 }
+                
+                let mealRelations = meal.ratings
+                let ratingsQuery = mealRelations.query()
+                ratingsQuery?.cachePolicy = .CacheElseNetwork
+                ratingsQuery?.findObjectsInBackgroundWithBlock({ (ratings, error) -> Void in
+                    //
+                    print("inside ratingsQuery with objects = \(ratings)")
+                })
+                
+//                ratingControl.rating = meal.rating.rating
             }
         }
     }
